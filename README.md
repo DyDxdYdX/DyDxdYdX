@@ -14,3 +14,12 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+
+<div align="center">
+
+|   Marker             |     Stats Indicator     |
+| :---                   |     :---:      |
+| Most Used Language in Github | ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=NestumMilo-isFezan&layout=compact&theme=radical&hide_border=true) |
+
+</div>
