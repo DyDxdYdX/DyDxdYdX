@@ -10,6 +10,7 @@ export default function Home() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
+    const sections = sectionsRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,14 +27,14 @@ export default function Home() {
       }
     );
 
-    sectionsRef.current.forEach((section) => {
+    sections.forEach((section) => {
       if (section) {
         observer.observe(section);
       }
     });
 
     return () => {
-      sectionsRef.current.forEach((section) => {
+      sections.forEach((section) => {
         if (section) {
           observer.unobserve(section);
         }
@@ -76,7 +77,7 @@ export default function Home() {
         <div ref={(el) => { sectionsRef.current[1] = el }} className="section-content w-full max-w-2xl text-center px-4">
           <h2 className="text-2xl font-semibold mb-4">About Me</h2>
           <p className="text-muted-foreground text-base">
-          I'm a Software Engineer passionate about building innovative web and mobile applications. I enjoy solving complex problems through technology and have experience with C++, Java, PHP, and Kotlin. I focus on creating user-centric, efficient solutions and thrive in dynamic, forward-thinking teams.
+          I&apos;m a Software Engineer passionate about building innovative web and mobile applications. I enjoy solving complex problems through technology and have experience with C++, Java, PHP, and Kotlin. I focus on creating user-centric, efficient solutions and thrive in dynamic, forward-thinking teams.
           </p>
         </div>
       </section>
