@@ -7,6 +7,11 @@ interface LanguageStats {
   [key: string]: number;
 }
 
+interface GitHubRepo {
+  languages_url: string;
+  // Add other properties if needed in the future
+}
+
 export function GitHubStats() {
   const [languages, setLanguages] = useState<LanguageStats>({});
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +24,7 @@ export function GitHubStats() {
         const repos = await reposResponse.json();
 
         // Fetch language stats for each repository
-        const languagePromises = repos.map((repo: any) =>
+        const languagePromises = repos.map((repo: GitHubRepo) =>
           fetch(repo.languages_url).then(res => res.json())
         );
 
