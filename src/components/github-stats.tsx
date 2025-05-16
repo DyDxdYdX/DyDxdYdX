@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { Card } from './ui/card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 interface LanguageStats {
   [key: string]: number;
@@ -9,23 +12,73 @@ interface LanguageStats {
 
 interface GitHubRepo {
   languages_url: string;
-  // Add other properties if needed in the future
 }
 
+// Fallback data in case GitHub API fails
+const FALLBACK_LANGUAGES: LanguageStats = {
+  "PHP": 35,
+  "TypeScript": 20,
+  "JavaScript": 15,
+  "Java": 10,
+  "C++": 8,
+  "Kotlin": 5,
+  "HTML": 4,
+  "CSS": 3
+};
+
 export function GitHubStats() {
-  const [languages, setLanguages] = useState<LanguageStats>({});
+  const [languages, setLanguages] = useState<LanguageStats>(FALLBACK_LANGUAGES);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFallback, setIsFallback] = useState(true);
 
   useEffect(() => {
     async function fetchLanguageStats() {
       try {
-        // Fetch all repositories
-        const reposResponse = await fetch('https://api.github.com/users/DyDxdYdX/repos');
-        const repos = await reposResponse.json();
+        // Setup headers with GitHub token if available
+        const headers: HeadersInit = {
+          'Accept': 'application/vnd.github.v3+json',
+        };
 
-        // Fetch language stats for each repository
+        // Add token if available (both in development and production)
+        if (process.env.NEXT_PUBLIC_GITHUB_ACCESS_TOKEN) {
+          headers['Authorization'] = `Bearer ${process.env.NEXT_PUBLIC_GITHUB_ACCESS_TOKEN}`;
+        }
+
+        // Fetch all repositories with authentication
+        const reposResponse = await fetch('https://api.github.com/users/DyDxdYdX/repos', {
+          headers,
+          // Add cache control
+          next: {
+            revalidate: 3600 // Revalidate every hour
+          }
+        });
+        
+        if (!reposResponse.ok) {
+          const errorText = await reposResponse.text();
+          console.warn('Failed to fetch repos:', errorText);
+          return; // Will use fallback data
+        }
+        
+        const repos = await reposResponse.json();
+        
+        if (!Array.isArray(repos)) {
+          console.warn('Invalid repos response:', repos);
+          return; // Will use fallback data
+        }
+
+        // Fetch language stats for each repository with authentication
         const languagePromises = repos.map((repo: GitHubRepo) =>
-          fetch(repo.languages_url).then(res => res.json())
+          fetch(repo.languages_url, { 
+            headers,
+            next: {
+              revalidate: 3600 // Revalidate every hour
+            }
+          })
+            .then(res => res.ok ? res.json() : {})
+            .catch(error => {
+              console.warn('Error fetching language stats:', error);
+              return {};
+            })
         );
 
         const languagesData = await Promise.all(languagePromises);
@@ -37,6 +90,11 @@ export function GitHubStats() {
             combinedStats[language] = (combinedStats[language] || 0) + bytes;
           });
         });
+
+        if (Object.keys(combinedStats).length === 0) {
+          console.warn('No languages found in repositories');
+          return; // Will use fallback data
+        }
 
         // Calculate percentages
         const total = Object.values(combinedStats).reduce((a, b) => a + b, 0);
@@ -51,9 +109,11 @@ export function GitHubStats() {
         );
 
         setLanguages(sortedLanguages);
-        setIsLoading(false);
+        setIsFallback(false);
       } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
+        console.warn('Error fetching GitHub stats:', error);
+        // Fallback data will be used
+      } finally {
         setIsLoading(false);
       }
     }
@@ -92,7 +152,23 @@ export function GitHubStats() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <Card className="p-6 space-y-4">
-        <h3 className="text-xl font-semibold">Languages Used on GitHub</h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-semibold">Languages Used on GitHub</h3>
+          <div className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
+            {isFallback && (
+              <div className="relative group">
+                <FontAwesomeIcon 
+                  icon={faCircleInfo} 
+                  className="w-4 h-4 text-muted-foreground cursor-help" 
+                />
+                <div className="absolute hidden group-hover:block right-0 top-6 w-48 p-2 text-xs bg-popover text-popover-foreground rounded-md shadow-lg z-50">
+                  Using cached data - GitHub API unavailable
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
         <div className="space-y-3">
           {Object.entries(languages).map(([language, percentage]) => (
             <div key={language} className="space-y-1">

@@ -27,6 +27,11 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Create config file
+        run: |
+          echo "// GitHub configuration
+          export const GITHUB_TOKEN = '${{ secrets.GITHUB_STATS_TOKEN }}';
+          " > src/config.ts
       - name: Build with Next.js
         run: npm run build
       - name: Upload artifact
@@ -43,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4

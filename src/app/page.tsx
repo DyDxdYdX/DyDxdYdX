@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -14,6 +14,8 @@ import {
   faEnvelope,
   faArrowRight,
   faCode,
+  faBars,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithub,
@@ -23,6 +25,7 @@ import {
 
 export default function Home() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = sectionsRef.current;
@@ -57,36 +60,71 @@ export default function Home() {
     };
   }, []);
 
+  const navLinks = [
+    { href: '#hero', icon: faHome, text: 'Home' },
+    { href: '#about', icon: faUser, text: 'About' },
+    { href: '#skills', icon: faCode, text: 'Skills' },
+    { href: '#projects', icon: faLaptopCode, text: 'Projects' },
+    { href: '#contact', icon: faEnvelope, text: 'Contact' },
+  ];
+
+  const handleNavClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <main className="min-h-screen relative">
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
       
-      {/* Navigation Menu */}
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-background/60 backdrop-blur-md border-b">
+      {/* Mobile Menu Button */}
+      <button
+        className="fixed top-4 left-4 z-50 p-2 md:hidden"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        <FontAwesomeIcon 
+          icon={isMobileMenuOpen ? faXmark : faBars} 
+          className="w-6 h-6"
+        />
+      </button>
+
+      {/* Mobile Sidebar Navigation */}
+      <div className={`
+        fixed top-0 left-0 h-full w-64 bg-background/95 backdrop-blur-md border-r 
+        transform transition-transform duration-300 ease-in-out z-40
+        md:hidden
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
+        <div className="pt-20 px-4">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={handleNavClick}
+              className="flex items-center gap-3 py-3 px-4 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-primary/10"
+            >
+              <FontAwesomeIcon icon={link.icon} className="w-4 h-4" />
+              {link.text}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-background/60 backdrop-blur-md border-b hidden md:block">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center h-16 gap-8">
-            <a href="#hero" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
-              <FontAwesomeIcon icon={faHome} className="w-4 h-4" />
-              Home
-            </a>
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
-              <FontAwesomeIcon icon={faUser} className="w-4 h-4" />
-              About
-            </a>
-            <a href="#skills" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
-              <FontAwesomeIcon icon={faCode} className="w-4 h-4" />
-              Skills
-            </a>
-            <a href="#projects" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
-              <FontAwesomeIcon icon={faLaptopCode} className="w-4 h-4" />
-              Projects
-            </a>
-            <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
-              <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4" />
-              Contact
-            </a>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100"
+              >
+                <FontAwesomeIcon icon={link.icon} className="w-4 h-4" />
+                {link.text}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
