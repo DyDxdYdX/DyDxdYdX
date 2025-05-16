@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { GitHubStats } from "@/components/github-stats";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faHome, 
@@ -12,10 +13,12 @@ import {
   faLaptopCode, 
   faEnvelope,
   faArrowRight,
+  faCode,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithub,
-  faLinkedin
+  faLinkedin,
+  faInstagram
 } from '@fortawesome/free-brands-svg-icons';
 
 export default function Home() {
@@ -55,25 +58,32 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen">
-      <ThemeToggle />
+    <main className="min-h-screen relative">
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+      
       {/* Navigation Menu */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-background/60 backdrop-blur-md border-b">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center h-16 gap-8">
-            <a href="#hero" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2">
+            <a href="#hero" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
               <FontAwesomeIcon icon={faHome} className="w-4 h-4" />
               Home
             </a>
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2">
+            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
               <FontAwesomeIcon icon={faUser} className="w-4 h-4" />
               About
             </a>
-            <a href="#projects" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2">
+            <a href="#skills" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
+              <FontAwesomeIcon icon={faCode} className="w-4 h-4" />
+              Skills
+            </a>
+            <a href="#projects" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
               <FontAwesomeIcon icon={faLaptopCode} className="w-4 h-4" />
               Projects
             </a>
-            <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2">
+            <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 opacity-75 hover:opacity-100">
               <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4" />
               Contact
             </a>
@@ -82,18 +92,20 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen w-full flex items-center justify-center">
-        <div ref={(el) => { sectionsRef.current[0] = el }} className="section-content w-full max-w-3xl text-center flex flex-col items-center gap-6 px-4">
-          <Avatar className="w-24 h-24 mx-auto shadow-lg">
+      <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-dot-pattern">
+        <div ref={(el) => { sectionsRef.current[0] = el }} className="section-content w-full max-w-3xl text-center flex flex-col items-center gap-8 px-4">
+          <Avatar className="w-32 h-32 mx-auto ring-2 ring-border">
             <AvatarImage src="https://media.licdn.com/dms/image/v2/D5635AQGJKn3yFnwLYA/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1736253057219?e=1747908000&v=beta&t=PSfKG2DlJDu0n0KIcyJwsVyAAC5vRdXgcA-0dzxfIvY" alt="Dexter Dykes Timothy" />
             <AvatarFallback>DT</AvatarFallback>
           </Avatar>
-          <h1 className="text-4xl font-bold tracking-tight">Dexter Dykes Timothy</h1>
-          <p className="text-lg text-muted-foreground">Computer Science Nerd | Passionate Software Engineer</p>
-          <Button className="mt-4 px-8 py-6 text-lg flex items-center gap-2" asChild>
+          <div className="space-y-4">
+            <h1 className="text-5xl font-bold tracking-tight">Dexter Dykes Timothy</h1>
+            <p className="text-xl text-muted-foreground">Computer Science Nerd | Passionate Software Engineer</p>
+          </div>
+          <Button size="lg" className="mt-4 text-lg group" asChild>
             <a href="#contact">
               Contact Me
-              <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
+              <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </a>
           </Button>
         </div>
@@ -101,19 +113,27 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="min-h-screen w-full flex items-center justify-center">
-        <div ref={(el) => { sectionsRef.current[1] = el }} className="section-content w-full max-w-2xl text-center px-4">
-          <h2 className="text-2xl font-semibold mb-4">About Me</h2>
-          <p className="text-muted-foreground text-base">
-          I&apos;m a Software Engineer passionate about building innovative web and mobile applications. I enjoy solving complex problems through technology and have experience with C++, Java, PHP, and Kotlin. I focus on creating user-centric, efficient solutions and thrive in dynamic, forward-thinking teams.
+        <div ref={(el) => { sectionsRef.current[1] = el }} className="section-content w-full max-w-2xl text-center px-4 space-y-8">
+          <h2 className="text-3xl font-bold">About Me</h2>
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            I&apos;m a Software Engineer passionate about building innovative web and mobile applications. I enjoy solving complex problems through technology and have experience with C++, Java, PHP, and Kotlin. I focus on creating user-centric, efficient solutions and thrive in dynamic, forward-thinking teams.
           </p>
         </div>
       </section>
 
+      {/* Skills Section */}
+      <section id="skills" className="min-h-screen w-full flex items-center justify-center py-16">
+        <div ref={(el) => { sectionsRef.current[2] = el }} className="section-content w-full max-w-5xl px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center">Skills & Expertise</h2>
+          <GitHubStats />
+        </div>
+      </section>
+
       {/* Projects Section */}
-      <section id="projects" className="min-h-screen w-full flex items-center justify-center">
-        <div ref={(el) => { sectionsRef.current[2] = el }} className="section-content w-full max-w-4xl px-4">
-          <h2 className="text-2xl font-semibold mb-8 text-center">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section id="projects" className="min-h-screen w-full flex items-center justify-center py-16">
+        <div ref={(el) => { sectionsRef.current[3] = el }} className="section-content w-full max-w-5xl px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center">Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 title: "Sabah Holiday Fetcher",
@@ -131,14 +151,17 @@ export default function Home() {
                 link: "https://github.com/DyDxdYdX?tab=repositories"
               }
             ].map((project) => (
-              <Card key={project.title} className="hover:shadow-xl transition-shadow">
+              <Card key={project.title} className="group hover:border-primary/50 transition-all duration-300">
                 <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
+                  <CardTitle className="group-hover:text-primary transition-colors">{project.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <Button variant="outline" asChild>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">View Project</a>
+                <CardContent className="space-y-4">
+                  <p className="text-muted-foreground">{project.description}</p>
+                  <Button variant="ghost" className="group-hover:text-primary group-hover:bg-primary/10" asChild>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+                      View Project
+                      <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
@@ -149,26 +172,32 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="min-h-screen w-full flex items-center justify-center">
-        <div ref={(el) => { sectionsRef.current[3] = el }} className="section-content w-full max-w-2xl text-center px-4">
-          <h2 className="text-2xl font-semibold mb-4">Get in Touch</h2>
-          <p className="text-muted-foreground mb-6">Feel free to reach out for collaborations or just a friendly hello!</p>
-          <div className="flex justify-center gap-4">
-            <Button variant="outline" asChild className="flex items-center gap-2">
+        <div ref={(el) => { sectionsRef.current[4] = el }} className="section-content w-full max-w-2xl text-center px-4 space-y-8">
+          <h2 className="text-3xl font-bold">Get in Touch</h2>
+          <p className="text-muted-foreground text-lg">Feel free to reach out for collaborations or just a friendly hello!</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button variant="outline" size="lg" className="group hover:border-primary/50" asChild>
               <a href="mailto:dydxsoft@gmail.com">
-                <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4" />
+                <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 mr-2 group-hover:text-primary" />
                 Email
               </a>
             </Button>
-            <Button variant="outline" asChild className="flex items-center gap-2">
+            <Button variant="outline" size="lg" className="group hover:border-primary/50" asChild>
               <a href="https://github.com/DyDxdYdX" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
+                <FontAwesomeIcon icon={faGithub} className="w-4 h-4 mr-2 group-hover:text-primary" />
                 GitHub
               </a>
             </Button>
-            <Button variant="outline" asChild className="flex items-center gap-2">
+            <Button variant="outline" size="lg" className="group hover:border-primary/50" asChild>
               <a href="https://www.linkedin.com/in/dykesdexter" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faLinkedin} className="w-4 h-4" />
+                <FontAwesomeIcon icon={faLinkedin} className="w-4 h-4 mr-2 group-hover:text-primary" />
                 LinkedIn
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" className="group hover:border-primary/50" asChild>
+              <a href="https://www.instagram.com/dexterdykes/" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faInstagram} className="w-4 h-4 mr-2 group-hover:text-primary" />
+                Instagram
               </a>
             </Button>
           </div>
@@ -176,15 +205,18 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-6 border-t">
+      <footer className="w-full py-8 border-t">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex items-center gap-6">
               <a href="https://github.com/DyDxdYdX" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
+                <FontAwesomeIcon icon={faGithub} className="w-6 h-6" />
               </a>
               <a href="https://www.linkedin.com/in/dykesdexter" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                <FontAwesomeIcon icon={faLinkedin} className="w-5 h-5" />
+                <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6" />
+              </a>
+              <a href="https://www.instagram.com/dexterdykes/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <FontAwesomeIcon icon={faInstagram} className="w-6 h-6" />
               </a>
             </div>
             <div className="text-sm text-muted-foreground">
