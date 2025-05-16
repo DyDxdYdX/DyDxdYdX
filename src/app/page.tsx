@@ -73,7 +73,10 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen relative">
+    <main 
+      className="min-h-screen relative"
+      onClick={() => isMobileMenuOpen && setIsMobileMenuOpen(false)}
+    >
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
@@ -90,12 +93,15 @@ export default function Home() {
       </button>
 
       {/* Mobile Sidebar Navigation */}
-      <div className={`
-        fixed top-0 left-0 h-full w-64 bg-background/95 backdrop-blur-md border-r 
-        transform transition-transform duration-300 ease-in-out z-40
-        md:hidden
-        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-      `}>
+      <div 
+        className={`
+          fixed top-0 left-0 h-full w-64 bg-background/95 backdrop-blur-md border-r 
+          transform transition-transform duration-300 ease-in-out z-40
+          md:hidden
+          ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+        `}
+        onClick={(e) => e.stopPropagation()}  // Prevent clicks inside menu from closing it
+      >
         <div className="pt-20 px-4">
           {navLinks.map((link) => (
             <a
