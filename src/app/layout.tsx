@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     creator: '@dykes_dexter',
   },
   verification: {
-    google: 'add-your-google-site-verification-here',
+    google: 'FYqGpo8UyDIbr1PMcoPVs9kRIydau3sHQdzvktzUhgI',
   },
   alternates: {
     canonical: 'https://dydxsoft.my',
