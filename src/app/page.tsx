@@ -61,8 +61,8 @@ export default function Home() {
       <section id="hero" className="h-screen w-full snap-start flex items-center justify-center bg-gradient-to-br from-background to-muted">
         <div ref={(el) => { sectionsRef.current[0] = el }} className="section-content w-full max-w-3xl text-center flex flex-col items-center gap-6 px-4">
           <Avatar className="w-24 h-24 mx-auto shadow-lg">
-            <AvatarImage src="https://media.licdn.com/dms/image/v2/D5635AQGJKn3yFnwLYA/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1736253057219?e=1747908000&v=beta&t=PSfKG2DlJDu0n0KIcyJwsVyAAC5vRdXgcA-0dzxfIvY" alt="Your Avatar" />
-            <AvatarFallback>YN</AvatarFallback>
+            <AvatarImage src="https://media.licdn.com/dms/image/v2/D5635AQGJKn3yFnwLYA/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1736253057219?e=1747908000&v=beta&t=PSfKG2DlJDu0n0KIcyJwsVyAAC5vRdXgcA-0dzxfIvY" alt="Dexter Dykes Timothy" />
+            <AvatarFallback>DT</AvatarFallback>
           </Avatar>
           <h1 className="text-4xl font-bold tracking-tight">Dexter Dykes Timothy</h1>
           <p className="text-lg text-muted-foreground">Computer Science Nerd | Passionate Software Engineer</p>
