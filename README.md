@@ -1,6 +1,5 @@
 # DyDxdYdX Portfolio
-[![dydxsoft.my](https://github.com/DyDxdYdX/DyDxdYdX/actions/workflows/deploy.yml/badge.svg)](https://github.com/DyDxdYdX/DyDxdYdX/actions/workflows/deploy.yml)
-<br>Welcome to my portfolio! I'm a passionate developer focused on creating innovative solutions and beautiful user experiences.
+Welcome to my portfolio! I'm a passionate developer focused on creating innovative solutions and beautiful user experiences.
 
 ## About Me
 
