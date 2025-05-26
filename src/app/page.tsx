@@ -139,7 +139,7 @@ export default function Home() {
       <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-dot-pattern">
         <div ref={(el) => { sectionsRef.current[0] = el }} className="section-content w-full max-w-3xl text-center flex flex-col items-center gap-8 px-4">
           <Avatar className="w-32 h-32 mx-auto ring-2 ring-border">
-            <AvatarImage src="https://media.licdn.com/dms/image/v2/D5635AQGJKn3yFnwLYA/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1736253057219?e=1747908000&v=beta&t=PSfKG2DlJDu0n0KIcyJwsVyAAC5vRdXgcA-0dzxfIvY" alt="Dexter Dykes Timothy" />
+            <AvatarImage src="/images/profile.jpg" alt="Dexter Dykes Timothy" className="" />
             <AvatarFallback>DT</AvatarFallback>
           </Avatar>
           <div className="space-y-4">
