@@ -5,6 +5,7 @@ import { Card } from './ui/card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { GITHUB_TOKEN } from '@/config';
 
 interface LanguageStats {
   [key: string]: number;
@@ -40,8 +41,8 @@ export function GitHubStats() {
         };
 
         // Add token if available (both in development and production)
-        if (process.env.NEXT_PUBLIC_GITHUB_ACCESS_TOKEN) {
-          headers['Authorization'] = `Bearer ${process.env.NEXT_PUBLIC_GITHUB_ACCESS_TOKEN}`;
+        if (GITHUB_TOKEN) {
+          headers['Authorization'] = `Bearer ${GITHUB_TOKEN}`;
         }
 
         // Fetch all repositories with authentication
