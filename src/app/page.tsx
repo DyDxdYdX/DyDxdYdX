@@ -182,7 +182,7 @@ export default function Home() {
               {
                 title: "Sabah Holiday Fetcher",
                 description: "A simple API that provides public holiday data for Malaysia (Sabah) in JSON format.",
-                link: "https://sabah-holiday.dydxsoft.my/
+                link: "https://sabah-holiday.dydxsoft.my/"
               },
               {
                 title: "Shophawk",
