@@ -16,6 +16,8 @@ import {
   faCode,
   faBars,
   faXmark,
+  faHashtag,
+  faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithub,
@@ -26,6 +28,7 @@ import {
 export default function Home() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [age, setAge] = useState<number>(0);
 
   useEffect(() => {
     const sections = sectionsRef.current;
@@ -58,6 +61,24 @@ export default function Home() {
         }
       });
     };
+  }, []);
+
+  useEffect(() => {
+    // Calculate age based on date of birth
+    const calculateAge = () => {
+      const dob = new Date('2002-08-30');
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const monthDiff = today.getMonth() - dob.getMonth();
+      
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+      
+      setAge(age);
+    };
+
+    calculateAge();
   }, []);
 
   const navLinks = [
@@ -157,11 +178,59 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="min-h-screen w-full flex items-center justify-center">
-        <div ref={(el) => { sectionsRef.current[1] = el }} className="section-content w-full max-w-2xl text-center px-4 space-y-8">
-          <h2 className="text-3xl font-bold">About Me</h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            I&apos;m a Software Engineer passionate about building innovative web and mobile applications. I enjoy solving complex problems through technology and have experience with C++, Java, PHP, and Kotlin. I focus on creating user-centric, efficient solutions and thrive in dynamic, forward-thinking teams.
-          </p>
+        <div ref={(el) => { sectionsRef.current[1] = el }} className="section-content w-full max-w-5xl px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center">About Me</h2>
+          <Card className="border-2">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              {/* Left Side - Image and Personal Details */}
+              <div className="p-8 border-r border-border">
+                <div className="space-y-6">
+                  <div className="relative w-64 h-64 mx-auto">
+                    <Avatar className="w-full h-full ring-4 ring-border">
+                      <AvatarImage src="/images/profile.jpg" alt="Dexter Dykes Timothy" />
+                      <AvatarFallback>DT</AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <div className="space-y-4 text-center">
+                    <h3 className="text-2xl font-semibold">Dexter Dykes Timothy</h3>
+                    <div className="space-y-2 text-muted-foreground">
+                      <p className="flex items-center justify-center gap-2">
+                        <FontAwesomeIcon icon={faHashtag} className="w-4 h-4" />
+                        {age} Years Old
+                      </p>
+                      <p className="flex items-center justify-center gap-2">
+                        <FontAwesomeIcon icon={faLocationDot} className="w-4 h-4" />
+                        Based in Malaysia
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Description */}
+              <div className="p-8">
+                <div className="space-y-6">
+                  <p className="text-muted-foreground text-lg leading-relaxed">
+                    I&apos;m a Software Engineer passionate about building innovative web and mobile applications. I enjoy solving complex problems through technology and have experience with C++, Java, PHP, and Kotlin. I focus on creating user-centric, efficient solutions and thrive in dynamic, forward-thinking teams.
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <Button variant="outline" className="group hover:border-primary/50" asChild>
+                      <a href="https://github.com/DyDxdYdX" target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon icon={faGithub} className="w-4 h-4 mr-2 group-hover:text-primary" />
+                        GitHub
+                      </a>
+                    </Button>
+                    <Button variant="outline" className="group hover:border-primary/50" asChild>
+                      <a href="https://www.linkedin.com/in/dykesdexter" target="_blank" rel="noopener noreferrer">
+                        <FontAwesomeIcon icon={faLinkedin} className="w-4 h-4 mr-2 group-hover:text-primary" />
+                        LinkedIn
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
 
