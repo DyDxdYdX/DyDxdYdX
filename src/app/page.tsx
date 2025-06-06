@@ -251,12 +251,16 @@ export default function Home() {
               {
                 title: "Sabah Holiday Fetcher",
                 description: "A simple API that provides public holiday data for Malaysia (Sabah) in JSON format.",
-                link: "https://github.com/DyDxdYdX/sabah-public-holiday-fetcher"
+                link: "https://sabah-holiday.dydxsoft.my/"
               },
               {
                 title: "Shophawk",
                 description: "An e-commerce platform that helps users discover and compare prices across different online stores.",
                 link: "https://github.com/DyDxdYdX/shophawk"
+              },{
+                title: "Minigame by DyDxSoft",
+                description: "Minigame website where you can play classic gane for free without annoying ads.",
+                link: "https://minigame.dydxsoft.my"
               },
               {
                 title: "Ongoing Projects",

@@ -1,5 +1,5 @@
-# DyDxdYdX Portfolio
-Welcome to my portfolio! I'm a passionate developer focused on creating innovative solutions and beautiful user experiences.
+# DyDxdYdX Github
+Welcome to my Github! I'm a passionate developer focused on creating innovative solutions and beautiful user experiences.
 
 ## About Me
 
