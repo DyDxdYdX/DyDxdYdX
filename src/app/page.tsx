@@ -170,7 +170,7 @@ export default function Home() {
           } else {
             setShowErrorDialog(true);
           }
-        } catch (jsonError) {
+        } catch {
           console.log('Could not parse JSON, but request was successful');
           setShowSuccessDialog(true);
           resetForm();
@@ -467,10 +467,10 @@ export default function Home() {
               <div className="p-8 border-r border-border">
                 <div className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="text-2xl font-semibold">Let's Connect!</h3>
+                    <h3 className="text-2xl font-semibold">Let&apos;s Connect!</h3>
                     <p className="text-muted-foreground text-lg leading-relaxed">
                       Feel free to reach out for collaborations, project discussions, or just a friendly hello!
-                      I'm always excited to connect with fellow developers and creators.
+                      I&apos;m always excited to connect with fellow developers and creators.
                     </p>
                   </div>
 
@@ -561,7 +561,7 @@ export default function Home() {
                       <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5 text-primary" />
                       Send me a message
                     </h3>
-                    <p className="text-muted-foreground text-sm">I'll get back to you as soon as possible!</p>
+                    <p className="text-muted-foreground text-sm">I&apos;ll get back to you as soon as possible!</p>
                   </div>
 
                   <form
@@ -647,7 +647,7 @@ export default function Home() {
               Message Sent
             </AlertDialogTitle>
             <AlertDialogDescription className="text-sm text-muted-foreground">
-              I'll get back to you soon.
+              I&apos;ll get back to you soon.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
