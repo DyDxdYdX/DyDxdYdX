@@ -28,8 +28,8 @@ I specialize in building modern web applications with a focus on user experience
 Feel free to reach out to me for collaboration opportunities or just to say hello!
 
 - GitHub: [@DyDxdYdX](https://github.com/DyDxdYdX)
-- LinkedIn: https://www.linkedin.com/in/dykesdexter
-- Email: dydxsoft@gmail.com
+- LinkedIn: [@Dexter Dykes](https://www.linkedin.com/in/dykesdexter)
+- Email: [@dydxsoft](dydxsoft@gmail.com)
 
 ## License
 
