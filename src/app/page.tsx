@@ -427,10 +427,16 @@ export default function Home() {
                 title: "Shophawk",
                 description: "An e-commerce platform that helps users discover and compare prices across different online stores.",
                 link: "https://github.com/DyDxdYdX/shophawk"
-              },{
+              },
+              {
                 title: "Minigame by DyDxSoft",
                 description: "Minigame website where you can play classic gane for free without annoying ads.",
                 link: "https://minigame.dydxsoft.my"
+              },
+              {
+                title: "quotationAI by DyDxSoft",
+                description: "An AI-powered quotation management system built with Laravel and React.",
+                link: "https://quotationai.dydxdydx.com/"
               },
               {
                 title: "Ongoing Projects",
