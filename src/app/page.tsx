@@ -362,7 +362,7 @@ export default function Home() {
                   title: "Bachelor of Computer Science (Hons) in Software Engineering",
                   institution: "Universiti Malaysia Sabah (UMS)",
                   location: "Kota Kinabalu, Sabah",
-                  achievement: "CGPA 3.50"
+                  achievement: "CGPA 3.54"
                 },
                 {
                   year: "2020 - 2021",
