@@ -19,7 +19,7 @@ I specialize in building modern web applications with a focus on user experience
 
 |   Marker             |     Stats Indicator     |
 | :---                   |     :---:      |
-| Most Used Language in Github | ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=DyDxdYdX&layout=compact&theme=radical&hide_border=true) |
+| Most Used Language in Github | ![Top Langs](https://dydxsoft.my/github-stats/stats.svg) |
 
 </div>
 
