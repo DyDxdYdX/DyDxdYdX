@@ -419,9 +419,9 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Sabah Holiday Fetcher",
-                description: "A simple API that provides public holiday data for Malaysia (Sabah) in JSON format.",
-                link: "https://sabah-holiday.dydxsoft.my/"
+                title: "Malaysia Holiday API",
+                description: "API that provides public holiday data for all state in Malaysia in JSON format.",
+                link: "https://malaysia-holiday.dydxsoft.my/"
               },
               {
                 title: "Shophawk",
