@@ -5,7 +5,6 @@ import { Card } from './ui/card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import { GITHUB_TOKEN } from '@/config';
 
 interface LanguageStats {
   [key: string]: number;
@@ -35,17 +34,11 @@ export function GitHubStats() {
   useEffect(() => {
     async function fetchLanguageStats() {
       try {
-        // Setup headers with GitHub token if available
         const headers: HeadersInit = {
           'Accept': 'application/vnd.github.v3+json',
         };
 
-        // Add token if available (both in development and production)
-        if (GITHUB_TOKEN) {
-          headers['Authorization'] = `Bearer ${GITHUB_TOKEN}`;
-        }
-
-        // Fetch all repositories with authentication
+        // Fetch public repositories without credentials
         const reposResponse = await fetch('https://api.github.com/users/DyDxdYdX/repos', {
           headers,
           // Add cache control
@@ -67,7 +60,7 @@ export function GitHubStats() {
           return; // Will use fallback data
         }
 
-        // Fetch language stats for each repository with authentication
+        // Fetch public language stats without credentials
         const languagePromises = repos.map((repo: GitHubRepo) =>
           fetch(repo.languages_url, { 
             headers,
@@ -218,4 +211,4 @@ export function GitHubStats() {
       </Card>
     </div>
   );
-} 
+}
